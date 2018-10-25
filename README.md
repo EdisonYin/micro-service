@@ -4,7 +4,7 @@
 
 The project is for personally spring-boot study.
 
-I will add some intersting in the project.
+I will add some intersting code in the project.
 
 # Details
 
