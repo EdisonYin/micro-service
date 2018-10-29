@@ -3,6 +3,7 @@ package com.light.config;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.MailSender;
@@ -18,7 +19,12 @@ public class RootConfig {
 
     private JavaMailSenderImpl javaMailSender;
     private SimpleMailMessage simpleMailMessage;
-
+    
+    @Autowired
+    private JavaMailSender javaMailSendertool;
+    
+	@Value("${spring.mail.username}")
+    private String username;
     /**
      * 配置邮件发送器
      * @return
@@ -94,4 +100,12 @@ public class RootConfig {
         }
     }
 
+    public void testSendSimple() {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom(username);
+        message.setTo("edisonyin@augmentum.com.cn");
+        message.setSubject("标题：测试标题");
+        message.setText("测试内容部份");
+        javaMailSendertool.send(message);
+    }
 }

@@ -72,6 +72,7 @@ public class MailSender {
         }
 
     }
+    
     private MailSender(Builder builder) throws Exception{
         prop.setProperty("mail.debug", builder.debug);
         prop.setProperty("mail.smtp.auth", builder.auth);

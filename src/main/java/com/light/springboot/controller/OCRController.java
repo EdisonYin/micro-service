@@ -6,7 +6,12 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.light.springboot.model.OCRResult;
+import com.light.springboot.model.WordResult;
+import com.light.tool.GsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,22 +41,34 @@ public class OCRController {
      * 
      * 请求参数
      * 
-     * image     和url二选一       string   图像数据，base64编码后进行urlencode，要求base64编码和urlencode后大小不超过4M，最短边至少15px，最长边最大4096px,支持jpg/png/bmp格式，当image字段存在时url字段失效
-     * url       和image二选一 string   图片完整URL，URL长度不超过1024字节，URL对应的图片base64编码后大小不超过4M，最短边至少15px，最长边最大4096px,支持jpg/png/bmp格式，当image字段存在时url字段失效，不支持https的图片链接
+     * image  和url二选一       string   图像数据，base64编码后进行urlencode，要求base64
+     * 编码和urlencode后大小不超过4M，最短边至少15px，最长边最大4096px,支持jpg/png/bmp格式，当image字段存在时url字段失效.
+     * 
+     * url    和image二选一 string   图片完整URL，URL长度不超过1024字节，
+     * URL对应的图片base64编码后大小不超过4M，最短边至少15px，最长边最大4096px,支持jpg/png/bmp格式，
+     * 当image字段存在时url字段失效，不支持https的图片链接
      * 
      * */
 	@GetMapping("/baidu_ocr")
-	public String Baidu_OCR() {
+	public Object Baidu_OCR() {
 		String result = null;
+        List<WordResult> words_result = new ArrayList<WordResult>();
+        List<String> words = new ArrayList<String>();
         try {
-            byte[] imgData = FileUtil.readFileByBytes("e:\\dyhta.jpg");
+            byte[] imgData = FileUtil.readFileByBytes("d:\\test.jpg");
             String imgStr = Base64Util.encode(imgData);
             String params = URLEncoder.encode("image", "UTF-8") + "=" + URLEncoder.encode(imgStr, "UTF-8");
             result = baiduOCRService.OCR_request(params);
-		} catch (Exception e) {
+            OCRResult OcrResult = new OCRResult();
+            OcrResult = GsonUtil.parseJsonWithClass(result, OCRResult.class);
+            words_result  = OcrResult.getWords_result();
+            for (WordResult wordResult : words_result) {
+                words.add(wordResult.getWords());
+            }
+        } catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-		return result;
+		return words;
 	}
 
     public static String toPrettyFormat(String json) {

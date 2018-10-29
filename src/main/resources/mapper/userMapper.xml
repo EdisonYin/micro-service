@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.light.springboot.dao.mapper.UserMapper">
+
+    <resultMap type="com.light.springboot.model.User" id="userMap">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="password" property="password" />
+    </resultMap>
+
+    <select id="getUsers" resultType="com.light.springboot.model.User"
+        resultMap="userMap">
+        select * from user
+    </select>
+
+    <select id="login" resultType="com.light.springboot.model.User"
+        resultMap="userMap">
+        select * from user where log_id=#{login_id} and password = #{passowrd}
+    </select>
+    
+    <select id="update" parameterType="com.light.springboot.model.User">
+        update user set
+        name=#{name},password=#{password}
+        where
+        id=#{id}
+    </select>
+    
+    <select id="del" parameterType="java.lang.Integer">
+        delete from user where id=#{id}
+    </select>
+    
+    <select id="save" parameterType="com.light.springboot.model.User">
+        insert into users(name,password) values(#{name},#{passWord}})
+    </select>
+
+</mapper>

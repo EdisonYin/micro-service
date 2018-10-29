@@ -4,23 +4,42 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class User implements Serializable{
-    private int userID;
-    private String username;
+	private static final long serialVersionUID = -5554561712056198940L;
+	
+    private int id;
+    private String name;
+    private String log_id;
     private String password;
+    private int age;
     private int credits;
     private String lastIp;
     private Date lastVisit;
-	public int getUserID() {
-		return userID;
+    
+    
+	public int getId() {
+		return id;
 	}
-	public void setUserID(int userID) {
-		this.userID = userID;
+	public void setId(int id) {
+		this.id = id;
 	}
-	public String getUsername() {
-		return username;
+	public String getName() {
+		return name;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getLog_id() {
+		return log_id;
+	}
+	public void setLog_id(String log_id) {
+		this.log_id = log_id;
+	}
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
 	}
 	public String getPassword() {
 		return password;

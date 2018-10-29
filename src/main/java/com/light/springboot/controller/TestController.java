@@ -1,21 +1,28 @@
 package com.light.springboot.controller;
 
-import javax.xml.ws.ResponseWrapper;
+import java.util.List;
 
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+
+import com.light.springboot.dao.mapper.PersonMapper;
+import com.light.springboot.model.User;
 
 @Controller
 public class TestController {
 
-    @GetMapping("/login")
+    @Autowired
+    private PersonMapper personMapper;
+    
+    @GetMapping("/testlogin")
     public String helloworld() {
 		return"login";
     }
     
-    @GetMapping("/helloworld2")
-    public String helloworld_2() {
-        return "helloworld2";
+    @GetMapping("/testhelloworld")
+    public List<User> helloworld_2() {
+        return personMapper.selectAll();
     }
 }
