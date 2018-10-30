@@ -12,5 +12,5 @@ public interface MailService {
      * @param subject
      * @param content
      */
-    void sendHtmlMail(String to,String subject,String content);
+    void sendSimpleMail(String to,String subject,String content);
 }

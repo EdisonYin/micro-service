@@ -2,6 +2,7 @@ package com.light.schdule;
 
 import java.util.Date;
 
+import com.light.service.MailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class ScheduleTask {
 	
 	@Autowired
 	private RootConfig rootConfig;
+
+    @Autowired
+    private MailService mailService;
 	
 	@Value("${spring.mail.username}")
     private String username;
@@ -33,30 +37,29 @@ public class ScheduleTask {
     @Scheduled(cron = "0/3 * * * * ?")
     public void printSay() {
     	//logger.info("getToken定时任务启动");
+        sendDR();
     	//rootConfig.sendMail("test", "content", "edisonyin@augmentum.com.cn", "edisonyin@augmentum.com.cn" ,"");
     }
     
     @Scheduled(cron = "0 0/1 * * * ?")
     public void ScheduledTask3() {
         //System.out.println(" 我是一个每隔一分钟就就会执行的任务");
-        //rootConfig.sendMail("test", "content", "edisonyin@augmentum.com.cn", "edisonyin@augmentum.com.cn" ,"");
+       // rootConfig.sendMail("test", "content", "edisonyin@augmentum.com.cn", "edisonyin@augmentum.com.cn" ,"");
     }
     
     // 周一到周五 19：00 定时任务
     //@Scheduled(cron = "0 00 19 ? * MON-FRI")
     //@Scheduled(cron = "0/3 * * * * ?")
     public void sendDR() {
-    	MailSender	mailSender = rootConfig.mailSender();
-        SimpleMailMessage message = new SimpleMailMessage();//消息构造器
-        message.setFrom("edisonyin@augmentum.com.cn");//发件人
-        message.setTo("drewyuan@augmentum.com.cn");//收件人
-        message.setSubject("Spring Email Test");//主题
-        message.setText("<html><META http-equiv=Content-Type content='text/html; charset=GBK'><body><img src='cid:Coupon'>" +
-                "<h4>" + "测试乱码" + " says...</h4>" +
-                "<i>" + "测试乱码2" + "</i>" +
-                "</body></html>");;//正文
-        mailSender.send(message);
-        System.out.println("邮件发送完毕");
+        String to = "edisonyin@augmentum.com.cn";
+        String subject = "test simple email send";
+        String content = "Hello!";
+        try {
+            mailService.sendSimpleMail(to, subject, content);
+            System.out.println("邮件发送完毕");
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
     }
 //    @Scheduled(cron = "0/3 * * * * ?")
     public void testSendSimple() {
