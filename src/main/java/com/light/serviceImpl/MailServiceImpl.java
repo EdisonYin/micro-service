@@ -111,7 +111,7 @@ public class MailServiceImpl implements MailService {
             javaMailSender.send(mimeMessage);    //发送HTML邮件
 
         }catch (MessagingException messageException) {
-
+            logger.error(messageException.getMessage());
         }
     }
 }

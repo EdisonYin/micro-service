@@ -8,8 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailAuthenticationException;
-import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -37,7 +35,7 @@ public class ScheduleTask {
 	
     @Scheduled(cron = "0/3 * * * * ?")
     public void printSay() {
-    	//logger.info("getToken定时任务启动");
+    	logger.info("getToken定时任务启动");
         sendDR();
     }
     
@@ -58,9 +56,11 @@ public class ScheduleTask {
             mailService.sendMail("Test html mail title ", "asdad", to, to);
             System.out.println("邮件发送完毕");
         } catch (MailAuthenticationException e) {
+            System.out.println("catch MailAuthenticationException");
             System.out.println(e.getMessage());
             logger.error(e.getMessage());
         } catch (Exception ex) {
+            System.out.println("catch exception");
             System.out.println(ex.getMessage());
         }
     }
