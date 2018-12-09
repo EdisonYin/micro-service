@@ -22,6 +22,8 @@ Can get the words details from image. Some Detail you can learn as follow link:
 
 http://ai.baidu.com/tech/ocr
 
+pip 安装教程
+http://www.ttlsa.com/python/how-to-install-and-use-pip-ttlsa/
 
 
 
