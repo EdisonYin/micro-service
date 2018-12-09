@@ -36,7 +36,7 @@ public class ScheduleTask {
     @Scheduled(cron = "0/3 * * * * ?")
     public void printSay() {
     	logger.info("getToken定时任务启动");
-        sendDR();
+        //sendDR();
     }
     
     @Scheduled(cron = "0 0/1 * * * ?")

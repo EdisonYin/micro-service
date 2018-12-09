@@ -18,9 +18,15 @@ public class ViewController {
     
     @GetMapping("/login")
     public String login() {
+
 		return"login";
     }
-    
+
+    @GetMapping("/hello-world")
+    public String helloWorld() {
+
+        return"hello-world";
+    }
     //login
     //@RequestMapping("/login", method = "POST")
     @PostMapping("/login")

@@ -4,7 +4,7 @@ use DBName;
 
 create table t_Book
 (
- bookId int unsigned primary key not nullauto_increment,
+ bookId int unsigned primary key not null auto_increment,
  name varchar(50) not null,
  author varchar(20) not null,
  isbn char(20) not null,
@@ -17,13 +17,13 @@ create table t_Book
  pic varchar(100) not null,
  sold int unsigned not null,
  sum int unsigned not null,
- upShelfDate datetime not null,
+ uphelfDate datetime not null,
  downShelfDate datetime not null
  );
 
 create table t_User
 (
- userId int unsigned primary key not nullauto_increment,  
+ userId int unsigned primary key not null auto_increment,  
  name varchar(20) not null,
  pass varchar(20) not null,
  type varchar(10) not null,
@@ -35,7 +35,7 @@ create table t_User
 
 create table t_Order
 (
- orderId int unsigned primary key not nullauto_increment,
+ orderId int unsigned primary key not null auto_increment,
  totalPrice decimal not null,
  status varchar(20) not null,
  orderTime datetime not null,
