@@ -25,7 +25,7 @@ public class ViewController {
     @GetMapping("/hello-world")
     public String helloWorld() {
 
-        return"hello-world";
+        return"twts/index";
     }
     //login
     //@RequestMapping("/login", method = "POST")
