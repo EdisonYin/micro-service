@@ -33,6 +33,7 @@ public class ViewConfig extends WebMvcConfigurerAdapter{
                     registry.addViewController(urlPath).setViewName("twts/"+pagePaths.getFilePath());
                 }
             }
+            //registry.addViewController( "/" ).setViewName( "forward:/login.html" );
         }catch(IOException e){
             throw new RuntimeException("Unable to locate static pages:"+e.getMessage(),e);
         }

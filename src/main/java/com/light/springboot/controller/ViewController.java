@@ -2,36 +2,39 @@ package com.light.springboot.controller;
 
 import java.util.List;
 
+import com.light.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import com.light.springboot.dao.mapper.UserMapper;
 
 @Controller
 public class ViewController {
 
     @Autowired
-    private UserMapper userMapper;
+    private UserService userService;
     
     @GetMapping("/login")
     public String login() {
-
 		return"login";
     }
 
+    @RequestMapping("/")
+    public String index_login() {
+        return "login";
+    }
+
+
     @GetMapping("/hello-world")
     public String helloWorld() {
-
-        return"twts/index";
+        return "twts/index";
     }
-    //login
-    //@RequestMapping("/login", method = "POST")
+
+
     @PostMapping("/login")
-    public String do_login() {
-		return "main";
+    public String do_login(@RequestParam("username") String userName, @RequestParam("password") String password) {
+
+        return "index";
     }
     
     @GetMapping("/helloworld2")

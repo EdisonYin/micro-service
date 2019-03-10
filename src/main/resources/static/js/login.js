@@ -8,5 +8,13 @@ $(document).ready(function(){
 })
 
 function login() {
-	alert($('.message'));
+    var params = {
+    username: $("#username")[0].value,
+    password: $("#pwd")[0].value
+    };
+    $.post("/login", params,function(data){
+    alert("Data Loaded: " + data);
+    window.location = "/home";
+    });
+
 }
