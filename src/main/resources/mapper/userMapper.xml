@@ -11,27 +11,27 @@
 
     <select id="getUsers" resultType="com.light.springboot.model.User"
         resultMap="userMap">
-        select * from user
+        select * from t_user
     </select>
 
     <select id="login" resultType="com.light.springboot.model.User"
         resultMap="userMap">
-        select * from user where log_id=#{login_id} and password = #{passowrd}
+        select * from t_user where log_id=#{login_id} and password = #{passowrd}
     </select>
     
     <select id="update" parameterType="com.light.springboot.model.User">
-        update user set
+        update t_user set
         name=#{name},password=#{password}
         where
         id=#{id}
     </select>
     
     <select id="del" parameterType="java.lang.Integer">
-        delete from user where id=#{id}
+        delete from t_user where id=#{id}
     </select>
     
     <select id="save" parameterType="com.light.springboot.model.User">
-        insert into users(name,password) values(#{name},#{passWord}})
+        insert into t_user(name,password) values(#{name},#{passWord}})
     </select>
 
 </mapper>

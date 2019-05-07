@@ -29,7 +29,7 @@ public interface PersonMapper {
      * @param User
      * @return 受影响的行数
      */
-    @Update("update user set name=#{name},age=#{age} where id=#{id}")
+    @Update("update t_user set name=#{name},age=#{age} where id=#{id}")
     Long update(User User);
 
     /**
@@ -38,7 +38,7 @@ public interface PersonMapper {
      * @param id
      * @return 受影响的行数
      */
-    @Delete("delete from user where id=#{id}")
+    @Delete("delete from t_user where id=#{id}")
     Long delete(@Param("id") Long id);
 
     /**
@@ -46,7 +46,7 @@ public interface PersonMapper {
      *
      * @return
      */
-    @Select("select id,name,age from user")
+    @Select("select * from t_user")
     List<User> selectAll();
 
     /**
@@ -55,7 +55,7 @@ public interface PersonMapper {
      * @param id
      * @return
      */
-    @Select("select id,name,age from user where id=#{id}")
+    @Select("select id,name,age from t_user where id=#{id}")
     User selectById(@Param("id") Long id);
 }
 

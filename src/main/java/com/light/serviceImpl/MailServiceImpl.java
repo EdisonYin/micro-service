@@ -32,7 +32,7 @@ public class MailServiceImpl implements MailService {
     @Override
     public void sendSimpleMail(String to, String subject, String content) {
         logger.info("sendSimpleMail");
-        String from = "edisonyin@augmentum.com.cn";
+        String from = "";
         MailSender mailSender = rootConfig.mailSender();
 
         // 简单邮件消息构造器
