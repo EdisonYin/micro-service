@@ -35,8 +35,7 @@ public class ScheduleTask {
 	
     @Scheduled(cron = "0/3 * * * * ?")
     public void printSay() {
-    	logger.info("getToken定时任务启动");
-        //sendDR();
+    	logger.info("努力！！！");
     }
     
     @Scheduled(cron = "0 0/1 * * * ?")
@@ -52,7 +51,6 @@ public class ScheduleTask {
         String subject = "test simple email send";
         String content = "Hello!";
         try {
-            //mailService.sendSimpleMail(to, subject, content);
             mailService.sendMail("Test html mail title ", "asdad", to, to);
             System.out.println("邮件发送完毕");
         } catch (MailAuthenticationException e) {
@@ -63,9 +61,5 @@ public class ScheduleTask {
             System.out.println("catch exception");
             System.out.println(ex.getMessage());
         }
-    }
-//    @Scheduled(cron = "0/3 * * * * ?")
-    public void testSendSimple() {
-
     }
 }

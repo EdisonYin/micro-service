@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import com.light.springboot.model.User;
 import com.light.springboot.service.UserService;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService{
 
@@ -32,6 +34,11 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public boolean createUser(User user) {
 		return false;
+	}
+
+	@Override
+	public List<User> selectAll() {
+		return userMapper.getUsers();
 	}
 
 }

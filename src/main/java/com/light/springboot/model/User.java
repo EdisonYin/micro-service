@@ -8,64 +8,75 @@ public class User implements Serializable{
 	
     private int id;
     private String name;
-    private String log_id;
-    private String password;
-    private int age;
-    private int credits;
-    private String lastIp;
-    private Date lastVisit;
+    private String type;
+    private String address;
+    private String pass;
+    private String postCode;
+    private String phoneNumber;
+    private String email;
     
     
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public String getLog_id() {
-		return log_id;
+
+	public String getType() {
+		return type;
 	}
-	public void setLog_id(String log_id) {
-		this.log_id = log_id;
+
+	public void setType(String type) {
+		this.type = type;
 	}
-	public int getAge() {
-		return age;
+
+	public String getAddress() {
+		return address;
 	}
-	public void setAge(int age) {
-		this.age = age;
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
-	public String getPassword() {
-		return password;
+
+	public String getPass() {
+		return pass;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
-	public int getCredits() {
-		return credits;
+
+	public String getPostCode() {
+		return postCode;
 	}
-	public void setCredits(int credits) {
-		this.credits = credits;
+
+	public void setPostCode(String postCode) {
+		this.postCode = postCode;
 	}
-	public String getLastIp() {
-		return lastIp;
+
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
-	public void setLastIp(String lastIp) {
-		this.lastIp = lastIp;
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
-	public Date getLastVisit() {
-		return lastVisit;
+
+	public String getEmail() {
+		return email;
 	}
-	public void setLastVisit(Date lastVisit) {
-		this.lastVisit = lastVisit;
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
-    
-    
-    
 }

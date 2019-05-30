@@ -51,11 +51,9 @@ public class StaticPagePathFinder {
         Resource[] twstResources = resourcePatternResolver.getResources("classpath:/templates/twts/*.html");
         List<PagePaths> list = new ArrayList<PagePaths>();
         for(Resource resource : resources){
-            System.out.println(new PagePaths(buildRequestMapping(resource.getURL().getPath()),relativeFliePath(baseUrl,resource))+"hahaha");
             list.add(new PagePaths(buildRequestMapping(resource.getURL().getPath()),relativeFliePath(baseUrl,resource)));
         }
         for(Resource resource : twstResources){
-            System.out.println(new PagePaths(buildRequestMapping(resource.getURL().getPath()),relativeFliePath(twstUrl,resource))+"hahaha");
             list.add(new PagePaths(buildRequestMapping(resource.getURL().getPath()),relativeFliePath(twstUrl,resource)));
         }
         return list;
