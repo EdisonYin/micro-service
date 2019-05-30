@@ -1,12 +1,10 @@
 package com.light.springboot.controller;
 
-import java.util.List;
 
 import com.light.springboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import com.light.springboot.dao.mapper.UserMapper;
 
 @Controller
 public class ViewController {
@@ -23,13 +21,6 @@ public class ViewController {
     public String index_login() {
         return "login";
     }
-
-
-    @GetMapping("/hello-world")
-    public String helloWorld() {
-        return "twts/index";
-    }
-
 
     @PostMapping("/login")
     public String do_login(@RequestParam("username") String userName, @RequestParam("password") String password) {

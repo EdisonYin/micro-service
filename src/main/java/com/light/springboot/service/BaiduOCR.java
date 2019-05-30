@@ -81,7 +81,7 @@ public class BaiduOCR implements IBaiduOCRService{
 	        return access_token;
 	    }
 	 
-	    public static String toPrettyFormat(String json) {
+	 public static String toPrettyFormat(String json) {
 	        JsonParser jsonParser = new JsonParser();
 	        JsonObject jsonObject = jsonParser.parse(json).getAsJsonObject();
 	        Gson gson = new GsonBuilder().setPrettyPrinting().create();

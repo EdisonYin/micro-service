@@ -16,7 +16,7 @@
 
     <select id="login" resultType="com.light.springboot.model.User"
         resultMap="userMap">
-        select * from t_user where log_id=#{login_id} and password = #{passowrd}
+        select * from t_user where log_id=#{login_id} and pass = #{passowrd}
     </select>
     
     <select id="update" parameterType="com.light.springboot.model.User">
