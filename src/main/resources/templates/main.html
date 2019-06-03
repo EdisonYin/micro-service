@@ -1,13 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>grid</title>
-    <script src="https://www.ag-grid.com/dist/ag-grid/ag-grid.js"></script>
-	<script type="text/javascript" src="js/index.js"></script>
+    <title>Start ag-grid trip</title>
+    <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.noStyle.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css">
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-balham.css">
+    <!--<script type="text/javascript" src="js/index.js"></script>-->
 </head>
+
 <body>
-    <h1>Simple ag-Grid Example</h1>
-    <div id="myGrid" style="height: 115px;width:500px" class="ag-fresh"></div>
+    <h1>Hello from ag-grid!</h1>
+    <div id="myGrid" style="height: 600px;width:500px;" class="ag-theme-balham"></div>
+    <script type="text/javascript" charset="utf-8">
+    // specify the columns
+    var columnDefs = [
+      {headerName: "name", field: "name", rowGroup: true },
+      {headerName: "type", field: "type"},
+      {headerName: "address", field: "address"},
+      {headerName: "postCode", field: "postCode"},
+      {headerName: "phoneNumber", field: "phoneNumber"},
+      {headerName: "email", field: "email"}
+    ];
+
+    var autoGroupColumnDef = {
+        headerName: "Model",
+        field: "name",
+        cellRenderer:'agGroupCellRenderer',
+        cellRendererParams: {
+            checkbox: true
+        }
+    }
+
+    // let the grid know which columns and what data to use
+    var gridOptions = {
+      columnDefs: columnDefs,
+      autoGroupColumnDef: autoGroupColumnDef,
+      groupSelectsChildren: true,
+      rowSelection: 'multiple'
+    };
+
+  // lookup the container we want the Grid to use
+  var eGridDiv = document.querySelector('#myGrid');
+
+  // create the grid passing in the div to use together with the columns & data we want to use
+  new agGrid.Grid(eGridDiv, gridOptions);
+
+  fetch('http://127.0.0.1:8000/user/all-users').then(function(response) {
+    return response.json();
+  }).then(function(data) {
+    gridOptions.api.setRowData(data);
+  })
+
+  function getSelectedRows() {
+    const selectedNodes = gridOptions.api.getSelectedNodes()
+    const selectedData = selectedNodes.map( function(node) { return node.data })
+    const selectedDataStringPresentation = selectedData.map( function(node) { return node.make + ' ' + node.model }).join(', ')
+    alert('Selected nodes: ' + selectedDataStringPresentation);
+  }
+  </script>
 </body>
+
 </html>

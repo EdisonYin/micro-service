@@ -6,6 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import com.light.springboot.model.User;
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class ViewController {
 
@@ -23,9 +28,14 @@ public class ViewController {
     }
 
     @PostMapping("/login")
-    public String do_login(@RequestParam("username") String userName, @RequestParam("password") String password) {
-
-        return "index";
+    public String do_login(@RequestParam("username") String userName, @RequestParam("password") String password,
+                           HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        User user= new User();
+        user.setEmail("sss@ss.xx");
+        user.setId(2);
+        session.setAttribute("user", user);
+        return "main";
     }
     
     @GetMapping("/helloworld2")

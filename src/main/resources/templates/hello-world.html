@@ -11,8 +11,8 @@
             $(document).keyup(function (event) {
                 if (event.keyCode == 13) {
                     $.ajax({
-                        type: "POST",
-                        url: "ok.php",
+                        type: "GET",
+                        url: "user/all-users",
                         data: "code=" + $("#in").val(),
                         success: function (msg) {
                             $("ul").append("<li>" + $("#in").val() + "</li>"); //将输入的输出到界面
@@ -42,6 +42,7 @@
             <input type="text" name="" id='in'>
         </div>
     </div>
+    <ruby>夼<rp>(</rp><rt>kuang</rt><rp>)</rp></ruby>
 </body>
 
 </html>

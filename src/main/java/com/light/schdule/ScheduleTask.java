@@ -35,7 +35,7 @@ public class ScheduleTask {
 	
     @Scheduled(cron = "0/3 * * * * ?")
     public void printSay() {
-    	logger.info("努力！！！");
+    	//logger.info("努力！！！");
     }
     
     @Scheduled(cron = "0 0/1 * * * ?")
