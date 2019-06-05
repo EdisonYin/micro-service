@@ -1,55 +1,44 @@
 module.exports = function(grunt) {
 
   grunt.initConfig({
+    // sourcePath: 'webapps/static',
+    // targetPath: 'target/grunt-output',
     pkg: grunt.file.readJSON('package.json'),
+    clean: {
+      options: {
+        'force': true
+      },
+      build: {
+          src: ['<%= targetPath %>/*']
+      }
+    },
+
+    // run: grunt concat 合并多个js文件
     concat: {
       options: {
-        separator: ';'
+        separator: ';',
       },
       dist: {
-        src: ['src/**/*.js'],
-        dest: 'dist/<%= pkg.name %>.js'
-      }
+        src: ['webapps/static/js/login.js', 'webapps/static/js/active.js'],
+        dest: 'target/dist/built.js',
+      },
     },
     uglify: {
       options: {
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
+        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
       },
-      dist: {
-        files: {
-          'dist/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
-        }
+      build: {
+        src: 'target/dist/built.js',
+        dest: 'target/<%= pkg.name %>.min.js'
       }
     },
-    qunit: {
-      files: ['test/**/*.html']
-    },
-    jshint: {
-      files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
-      options: {
-        //这里是覆盖JSHint默认配置的选项
-        globals: {
-          jQuery: true,
-          console: true,
-          module: true,
-          document: true
-        }
-      }
-    },
-    watch: {
-      files: ['<%= jshint.files %>'],
-      tasks: ['jshint', 'qunit']
-    }
   });
 
+  // 加载包含 "uglify" 任务的插件。
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-qunit');
-  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
 
-  grunt.registerTask('test', ['jshint', 'qunit']);
-
-  grunt.registerTask('default', ['jshint', 'qunit', 'concat', 'uglify']);
+  // 默认被执行的任务列表。
+  grunt.registerTask('default', ['concat', 'uglify']);
 
 };
