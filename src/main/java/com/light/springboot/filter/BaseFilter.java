@@ -11,6 +11,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import com.light.springboot.model.User;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +25,7 @@ import org.springframework.util.StringUtils;
 public class BaseFilter implements Filter{
 
 	@Autowired
-	private static final Logger logger = LoggerFactory.getLogger(LoginFilter.class);
+	private static final Logger logger = LoggerFactory.getLogger(BaseFilter.class);
 	
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -43,9 +45,12 @@ public class BaseFilter implements Filter{
             }    	
         }
 
-        if ("/login".equals(url)) {
-        	request.getRequestDispatcher("/login").forward(request, response);
-        } else {
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+
+        if (!"/login".equals(url) && user == null) {
+			response.sendRedirect("/login");
+        }  else {
             filterChain.doFilter(request,response);
         }
 	}

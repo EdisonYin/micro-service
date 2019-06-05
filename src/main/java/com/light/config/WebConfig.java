@@ -43,7 +43,8 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-
+        registry.addResourceHandler("/**").
+                addResourceLocations("http://127.0.0.1:8001");
     }
     /*
     addViewControllers可以方便的实现一个请求直接映射成视图，而无需书写controller
