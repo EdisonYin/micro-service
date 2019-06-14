@@ -1,6 +1,10 @@
 package com.light.config;
 
+import com.light.springboot.filter.BaseFilter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.*;
@@ -16,6 +20,12 @@ import java.io.IOException;
 // 2. 直接继承WebMvcConfigurationSupport
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
+
+    @Autowired
+    private static final Logger logger = LoggerFactory.getLogger(BaseFilter.class);
+
+    @Value("${server.staticPathPort:#{null}}")
+    private String staticPort;
 
     @Autowired
     private StaticPagePathFinder staticPagePathFinder;
@@ -43,8 +53,9 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        logger.info("static port is " + staticPort);
         registry.addResourceHandler("/**").
-                addResourceLocations("http://127.0.0.1:8001");
+                addResourceLocations("http://localhost"+":" + staticPort);
     }
 
     /**

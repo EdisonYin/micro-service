@@ -124,17 +124,22 @@
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>nekohtml</groupId>
-			<artifactId>nekohtml</artifactId>
-		</dependency>
-
 		<!--<dependency>-->
 			<!--<groupId>org.flywaydb</groupId>-->
 			<!--<artifactId>flyway-core</artifactId>-->
 			<!--<version>5.0.3</version>-->
 		<!--</dependency>-->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+            <version>1.5.8</version>
+		</dependency>
 
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+            <version>1.5.8</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -149,6 +154,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-
 </project>

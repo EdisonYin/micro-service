@@ -42,6 +42,7 @@ public class BaseFilter implements Filter{
         if (!StringUtils.isEmpty(url)) {
             if (url.indexOf(".html") > 0 || url.indexOf(".css") > 0 || url.indexOf(".js") >0) {
             	filterChain.doFilter(request,response);
+				return;
             }    	
         }
 

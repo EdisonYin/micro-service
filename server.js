@@ -3,7 +3,7 @@ var url = require("url"),
     http = require("http"),
     path = require("path");
 http.createServer(function (req, res) {
-    var pathname = __dirname + url.parse("/webapps/static"+req.url).pathname;//资源指向public目录
+    var pathname = __dirname + url.parse("/webapps/static"+req.url).pathname;//资源指向webapps/static目录
     if (path.extname(pathname) == "") {
         pathname += "/";
     }
