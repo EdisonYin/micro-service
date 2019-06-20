@@ -52,10 +52,20 @@ public class WebConfig implements WebMvcConfigurer {
                 .maxAge(3600 * 24);
     }
 
+    public void addInterceptors(InterceptorRegistry registry) {
+
+    }
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         logger.info("static port is " + staticPort);
+
         registry.addResourceHandler("/**").
                 addResourceLocations("http://localhost"+":" + staticPort);
+
+        // 过滤swagger resource
+        registry.addResourceHandler("/swagger-ui.html")
+                .addResourceLocations("classpath:/META-INF/resources/swagger-ui.html");
+        registry.addResourceHandler("/webjars/**")
+                .addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 
     /**
