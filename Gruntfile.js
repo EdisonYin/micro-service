@@ -20,15 +20,16 @@ module.exports = function(grunt) {
       },
       dist: {
         src: ['webapps/static/js/login.js', 'webapps/static/js/active.js'],
-        dest: 'target/dist/built.js',
+        dest: 'target/dist/main.js',
       },
     },
+    // uglify 合并的main.js 
     uglify: {
       options: {
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
       },
       build: {
-        src: 'target/dist/built.js',
+        src: 'target/dist/main.js',
         dest: 'target/<%= pkg.name %>.min.js'
       }
     },

@@ -40,8 +40,9 @@ public class BaseFilter implements Filter{
         String url = ((HttpServletRequest) request).getServletPath();
         logger.info("login forwarded: " + url);
         if (!StringUtils.isEmpty(url)) {
-            if (url.indexOf(".html") > 0 || url.indexOf(".css") > 0 || url.indexOf(".js") >0) {
+            if (url.indexOf(".html") > 0 || url.indexOf(".css") > 0 || url.indexOf(".js") >0 || isSwaggerUrl(url)) {
             	filterChain.doFilter(request,response);
+				return;
             }    	
         }
 
@@ -60,4 +61,10 @@ public class BaseFilter implements Filter{
 		// do nothing.
 	}
 
+	private boolean isSwaggerUrl(String url) {
+		if(url.indexOf("swagger")!=-1||url.indexOf("api-docs")!=-1){
+			return true;
+		}
+		return false;
+	}
 }
