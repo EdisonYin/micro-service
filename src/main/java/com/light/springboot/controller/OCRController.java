@@ -14,6 +14,8 @@ import com.light.springboot.model.WordResult;
 import com.light.tool.GsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
@@ -23,6 +25,7 @@ import com.google.gson.JsonParser;
 import com.light.springboot.service.IBaiduOCRService;
 import com.light.tool.Base64Util;
 import com.light.tool.FileUtil;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 public class OCRController {
@@ -30,7 +33,7 @@ public class OCRController {
 	@Autowired
 	private IBaiduOCRService baiduOCRService;
 	
-	// https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic 百度图片中的文字识别
+	//  https://aip.baidubce.com/rest/2.0/ocr/v1/general_basic 百度图片中的文字识别
 	// POST URL参数：access_token 通过API Key和Secret Key获取的access_token,参考“Access Token获取
     /*
      * 
@@ -49,13 +52,13 @@ public class OCRController {
      * 当image字段存在时url字段失效，不支持https的图片链接
      * 
      * */
-	@GetMapping("/baidu_ocr")
-	public Object Baidu_OCR() {
+	@PostMapping("/baidu_ocr")
+	public Object Baidu_OCR(@RequestParam("file") MultipartFile file) {
 		String result = null;
         List<WordResult> words_result = new ArrayList<WordResult>();
         List<String> words = new ArrayList<String>();
         try {
-            byte[] imgData = FileUtil.readFileByBytes("d:\\test.jpg");
+            byte[] imgData = file.getBytes();
             String imgStr = Base64Util.encode(imgData);
             String params = URLEncoder.encode("image", "UTF-8") + "=" + URLEncoder.encode(imgStr, "UTF-8");
             result = baiduOCRService.OCR_request(params);

@@ -28,8 +28,7 @@ public class SwaggerConfig{
         return new ApiInfoBuilder()
                 .title("Spring Boot中使用Swagger2构建RESTful API")
                 .description("rest api 文档构建利器")
-                .termsOfServiceUrl("http://blog.csdn.net/itguangit")
-                .contact("itguang")
+                .contact("Spring Boot Demo")
                 .version("1.0")
                 .build();
     }
